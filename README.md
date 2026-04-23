@@ -1,24 +1,71 @@
-# User Management — Next.js CRUD
+# User Management Dashboard
 
-Clean, functional user management dashboard. No fluff.
+A full CRUD web app built with Next.js 14 (App Router) as part of a frontend internship assignment. Manages users via the [JSONPlaceholder](https://jsonplaceholder.typicode.com) REST API.
 
-## Stack
-- Next.js 14 (App Router)
-- TypeScript
-- Axios + interceptors
-- CSS Modules
+🔗 **Live Demo:** [your-app.vercel.app](https://your-app.vercel.app) &nbsp;|&nbsp; 📁 **Repo:** [github.com/your-username/user-management-dashboard](https://github.com/your-username/user-management-dashboard)
 
-## Run
+---
+
+## Features
+
+- **List users** — searchable table filtered by name, email, or company
+- **View profile** — full user detail including contact, address, and company info
+- **Edit user** — inline form with optimistic UI update and rollback on failure
+- **Delete user** — confirmation modal with optimistic redirect
+- **Axios interceptors** — logs every request, handles errors globally
+
+## Tech Stack
+
+| Layer | Choice |
+|-------|--------|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript |
+| HTTP Client | Axios |
+| Styling | CSS Modules |
+| Deployment | Vercel |
+
+## Getting Started
+
 ```bash
+# 1. Clone the repo
+git clone https://github.com/your-username/user-management-dashboard.git
+cd user-management-dashboard
+
+# 2. Install dependencies
 npm install
+
+# 3. Start dev server
 npm run dev
 ```
 
-## Deploy
-Push to GitHub → import on [vercel.com](https://vercel.com). Zero config.
+Open [http://localhost:3000](http://localhost:3000) — redirects to `/users` automatically.
 
-## Features
-- `/users` — table view with live search, initials avatars
-- `/users/[id]` — view, edit (name + email), delete
-- Optimistic updates — UI updates instantly, rolls back on API failure
-- Axios interceptor — logs requests, handles errors globally
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx              # Root layout
+│   ├── page.tsx                # Redirects → /users
+│   └── users/
+│       ├── page.tsx            # GET /users — list with search
+│       └── [id]/
+│           └── page.tsx        # GET, PUT, DELETE /users/:id
+├── lib/
+│   └── api.ts                  # Axios instance + interceptors
+└── types/
+    └── index.ts                # User type definitions
+```
+
+## How Optimistic Updates Work
+
+1. User hits **Save** → UI updates instantly with new data
+2. `PUT /users/:id` fires in the background
+3. ✅ If it succeeds → done, toast confirms
+4. ❌ If it fails → state rolls back to previous values automatically
+
+Same pattern applies to delete — navigates away immediately, API call happens in background.
+
+## Notes
+
+JSONPlaceholder is a read-only mock API — `PUT` and `DELETE` return `200` but don't persist data server-side. This is expected and documented in the assignment.
