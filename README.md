@@ -2,7 +2,7 @@
 
 A full CRUD web app built with Next.js 14 (App Router) as part of a frontend internship assignment. Manages users via the [JSONPlaceholder](https://jsonplaceholder.typicode.com) REST API.
 
-🔗 **Live Demo:** [your-app.vercel.app](https://your-app.vercel.app) &nbsp;|&nbsp; 📁 **Repo:** [github.com/your-username/user-management-dashboard](https://github.com/your-username/user-management-dashboard)
+🔗 **Live Demo:** https://bevysquarecrudassignment.netlify.app/ &nbsp;|&nbsp; 📁 **Repo:** [github.com/your-username/user-management-dashboard](https://github.com/your-username/user-management-dashboard)
 
 ---
 
